@@ -1,7 +1,8 @@
-package com.example.tv_maze_app
+package com.example.tv_maze_app.presentation.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.tv_maze_app.R
 
 class MainActivity : AppCompatActivity() {
 

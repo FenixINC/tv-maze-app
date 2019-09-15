@@ -10,11 +10,12 @@ buildscript {
 
         retrofitLibVersion = '2.4.0'
         glideLibVersion = '4.9.0'
-        kotlin_version = '1.3.50'
-        retrofit_version = '2.5.0' // version 2.6.0 WARNING!! supports non-null response body types
-        room_version = '2.1.0'
-        room_coroutines_version = '2.1.0-alpha04'
-        lifecycle_version = '2.2.0-alpha04'
+        kotlinVersion = '1.3.50'
+        coroutineVersion = '1.3.0-M1'
+        retrofitVersion = '2.5.0' // version 2.6.0 WARNING!! supports non-null response body types
+        roomVersion = '2.1.0'
+        roomCoroutines_version = '2.1.0-alpha04'
+        lifecycleVersion = '2.2.0-alpha04'
     }
 
     repositories {
@@ -24,7 +25,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
