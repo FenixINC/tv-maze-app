@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">tv-maze-app</string>
+
+    <!--  TITLES:  -->
+    <string name="header_title_tv_show">TV Shows</string>
+
+    <string name="empty_data_message_swipe_refresh">There no data.\nSwipe to refresh.</string>
+    <string name="visit_website">Visit Website</string>
 </resources>

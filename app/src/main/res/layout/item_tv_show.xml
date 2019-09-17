@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="model"
+            type="com.example.tv_maze_app.data.models.TvShow" />
+
+        <variable
+            name="clickListener"
+            type="com.example.tv_maze_app.presentation.listeners.TvShowClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="@dimen/dp8"
+            android:onClick="@{()-> clickListener.onItemClick(model)}"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="140dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:bindImage="@{model}"
+                tools:ignore="ContentDescription"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp8"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:maxLines="2"
+                    android:text="@{model.name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/title_size"
+                    tools:text="@tools:sample/lorem" />
+
+                <TextView
+                    android:id="@+id/summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp8"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:maxLines="3"
+                    android:text="@{model.summary}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/default_text_size"
+                    tools:text="@tools:sample/lorem/random" />
+
+                <TextView
+                    android:id="@+id/website"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp8"
+                    android:ellipsize="end"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/visit_website"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/default_text_size" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="@dimen/dp8"
+                    android:layout_marginEnd="@dimen/dp8"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/favorite"
+                        android:layout_width="@dimen/dp0"
+                        android:layout_height="@dimen/dp32"
+                        android:layout_weight="1"
+                        android:onClick="@{()-> clickListener.onFavoriteClick(model)}"
+                        android:padding="@dimen/dp6"
+                        android:src="@drawable/selector_favorite"
+                        tools:ignore="ContentDescription" />
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dp0"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/dp32"
+                            android:layout_height="@dimen/dp32"
+                            android:layout_gravity="start|center_vertical"
+                            android:padding="@dimen/dp2"
+                            android:src="@drawable/ic_star_white"
+                            android:tint="@color/orange"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="start|center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/default_text_size"
+                            tools:text="7.4" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:background="@color/grey" />
+    </LinearLayout>
+</layout>
