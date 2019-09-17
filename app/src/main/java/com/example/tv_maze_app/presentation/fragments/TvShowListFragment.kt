@@ -58,11 +58,11 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
         setAdapterWithRecyclerView()
 
         lifecycleScope.launchWhenStarted {
-            doLoadCategoryList(this)
+            doLoadTvShowList(this)
         }
         mBinding.swipeRefresh.setOnRefreshListener {
             lifecycleScope.launchWhenStarted {
-                doRefreshCategoryList(this)
+                doRefreshTvShowList(this)
             }
         }
     }
@@ -97,7 +97,7 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
         rv.adapter = mAdapter
     }
 
-    private fun doLoadCategoryList(scope: CoroutineScope) {
+    private fun doLoadTvShowList(scope: CoroutineScope) {
         mViewModel.loadTvShowList(scope)?.observe(this@TvShowListFragment, Observer { result ->
             result?.let {
                 handleResult(result)
@@ -105,7 +105,7 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
         })
     }
 
-    private fun doRefreshCategoryList(scope: CoroutineScope) {
+    private fun doRefreshTvShowList(scope: CoroutineScope) {
         mViewModel.refreshTvShowList(scope)?.observe(this@TvShowListFragment, Observer { result ->
             result?.let {
                 handleResult(result)
