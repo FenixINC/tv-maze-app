@@ -1,16 +1,18 @@
 package com.example.tv_maze_app.presentation.fragments
 
+import android.net.Uri
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tv_maze_app.BR
@@ -22,6 +24,7 @@ import com.example.tv_maze_app.databinding.FragmentTvShowListBinding
 import com.example.tv_maze_app.presentation.listeners.TvShowClickListener
 import com.example.tv_maze_app.presentation.viewmodels.TvShowViewModel
 import kotlinx.coroutines.CoroutineScope
+import timber.log.Timber
 
 class TvShowListFragment : Fragment(), TvShowClickListener {
 
@@ -70,6 +73,20 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
 
     override fun onFavoriteClick(tvShow: TvShow) {
 
+    }
+
+    override fun onWebsiteClick(url: String) {
+        if (!TextUtils.isEmpty(url)) {
+            var updateUrl = ""
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                updateUrl = "http://$url"
+                CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse(updateUrl))
+            } else {
+                CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse(url))
+            }
+        } else {
+            Timber.d("Empty url")
+        }
     }
 
     private fun setAdapterWithRecyclerView() {

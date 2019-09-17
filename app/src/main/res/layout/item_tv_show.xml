@@ -66,9 +66,9 @@
                     android:ellipsize="end"
                     android:gravity="start|center_vertical"
                     android:maxLines="3"
-                    android:text="@{model.summary}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/default_text_size"
+                    app:bindText="@{model.summary}"
                     tools:text="@tools:sample/lorem/random" />
 
                 <TextView
@@ -78,6 +78,7 @@
                     android:layout_margin="@dimen/dp8"
                     android:ellipsize="end"
                     android:gravity="start|center_vertical"
+                    android:onClick="@{()-> clickListener.onWebsiteClick(model.url)}"
                     android:text="@string/visit_website"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/default_text_size" />
