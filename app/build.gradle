@@ -45,7 +45,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0-beta04'
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'androidx.core:core-ktx:1.2.0-alpha04'
-    implementation 'androidx.fragment:fragment-ktx:1.2.0-alpha03'
+    implementation 'androidx.fragment:fragment-ktx:1.2.0-alpha04'
     implementation 'com.google.android.material:material:1.1.0-alpha10'
 
     // Retrofit
@@ -72,7 +72,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     // Lifecycle:
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02"
-    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0-alpha04"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
 
     // Kotlin Coroutines with Architecture Components:
     // ViewModelScope:

@@ -15,7 +15,7 @@ buildscript {
         retrofitVersion = '2.5.0' // version 2.6.0 WARNING!! supports non-null response body types
         roomVersion = '2.1.0'
         roomCoroutines_version = '2.1.0-alpha04'
-        lifecycleVersion = '2.2.0-alpha04'
+        lifecycleVersion = '2.2.0-alpha05'
     }
 
     repositories {
