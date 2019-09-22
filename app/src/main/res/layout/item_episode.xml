@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showSeasonGroup"
+            type="boolean" />
+
+        <variable
+            name="model"
+            type="com.example.tv_maze_app.data.models.Episode" />
+
+        <variable
+            name="clickListener"
+            type="com.example.tv_maze_app.presentation.listeners.EpisodeClickListener" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/episode"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:background="@{model.number % 2 == 0 ? @color/grey : @color/white}"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="@{showSeasonGroup ? View.VISIBLE : View.GONE}"
+        tools:background="@color/grey">
+
+        <TextView
+            android:layout_width="@dimen/dp56"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp8"
+            android:gravity="center"
+            android:text="@{String.valueOf(model.number)}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_default"
+            tools:text="13" />
+
+        <TextView
+            android:layout_width="@dimen/dp85"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp12"
+            android:gravity="start"
+            android:text="@{model.airdate}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_default"
+            tools:text="2013-06-24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp8"
+            android:gravity="start|center_vertical"
+            android:maxLines="1"
+            android:text="@{model.name}"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text_size_default"
+            tools:text="Breaking Point" />
+    </LinearLayout>
+</layout>

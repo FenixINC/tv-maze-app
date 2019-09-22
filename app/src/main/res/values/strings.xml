@@ -4,6 +4,23 @@
     <!--  TITLES:  -->
     <string name="header_title_tv_show">TV Shows</string>
 
-    <string name="empty_data_message_swipe_refresh">There no data.\nSwipe to refresh.</string>
+    <!--  Tv Show Info:  -->
+    <string name="label_show_info">Show Info</string>
+    <string name="label_status">Status:</string>
+    <string name="label_country">Country:</string>
+    <string name="label_premiered">Premiered:</string>
+    <string name="label_language">Language:</string>
+    <string name="label_episodes_ordered">Episodes ordered:</string>
+    <string name="label_created_by">Created by:</string>
+    <string name="label_official_site">Official site:</string>
+
+    <!--  Season Group:  -->
+    <string name="label_season">Season\u00A0</string>
+    <string name="label_number">Number</string>
+    <string name="label_date">Date</string>
+    <string name="label_name">Name</string>
+
+    <string name="message_empty_data_swipe_refresh">There no data.\nSwipe to refresh.</string>
+    <string name="message_empty_data">There no data.</string>
     <string name="visit_website">Visit Website</string>
 </resources>

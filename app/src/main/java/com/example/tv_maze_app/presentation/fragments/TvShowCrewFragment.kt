@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -17,68 +18,62 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tv_maze_app.BR
 import com.example.tv_maze_app.R
-import com.example.tv_maze_app.data.implementations.TvShowRepositoryImpl
+import com.example.tv_maze_app.data.implementations.TvShowDetailsRepositoryImpl
+import com.example.tv_maze_app.data.models.Crew
 import com.example.tv_maze_app.data.models.ResultState
 import com.example.tv_maze_app.data.models.TvShow
-import com.example.tv_maze_app.databinding.FragmentTvShowListBinding
-import com.example.tv_maze_app.presentation.listeners.TvShowClickListener
-import com.example.tv_maze_app.presentation.viewmodels.TvShowViewModel
+import com.example.tv_maze_app.databinding.FragmentListBinding
+import com.example.tv_maze_app.presentation.listeners.TvShowCrewListener
+import com.example.tv_maze_app.presentation.viewmodels.TvShowDetailsViewModel
+import com.example.tv_maze_app.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import timber.log.Timber
 
-class TvShowListFragment : Fragment(), TvShowClickListener {
+class TvShowCrewFragment : Fragment(), TvShowCrewListener {
 
-    private lateinit var mBinding: FragmentTvShowListBinding
-    private lateinit var mViewModel: TvShowViewModel
-    private lateinit var mAdapter: TvShowAdapter
+    private lateinit var mBinding: FragmentListBinding
+    private lateinit var mViewModel: TvShowDetailsViewModel
+    private lateinit var mAdapter: TvShowCrewAdapter
+
+    private var mModel: TvShow? = null
 
     private val mViewModelFactory by lazy {
-        TvShowViewModel.Factory(TvShowRepositoryImpl())
+        TvShowDetailsViewModel.Factory(TvShowDetailsRepositoryImpl())
     }
 
     companion object {
-        fun newInstance() = TvShowListFragment()
+        fun newInstance(model: TvShow?) = TvShowCrewFragment().apply {
+            arguments = bundleOf(Constants.KEY_MODEL to model)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this@TvShowListFragment, mViewModelFactory)
-                .get(TvShowViewModel::class.java)
+        arguments?.run {
+            mModel = getParcelable(Constants.KEY_MODEL)
+        }
+
+        mViewModel = ViewModelProviders.of(this@TvShowCrewFragment, mViewModelFactory)
+                .get(TvShowDetailsViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = FragmentTvShowListBinding.inflate(inflater, container, false)
+        mBinding = FragmentListBinding.inflate(inflater, container, false)
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.title = getString(R.string.header_title_tv_show)
 
         setAdapterWithRecyclerView()
 
         lifecycleScope.launchWhenStarted {
-            doLoadTvShowList(this)
-        }
-        mBinding.swipeRefresh.setOnRefreshListener {
-            lifecycleScope.launchWhenStarted {
-                doRefreshTvShowList(this)
-            }
+            doLoadTvShowCrewList(this, mModel?.id)
         }
     }
 
-    override fun onItemClick(tvShow: TvShow) {
-        fragmentManager
-                ?.beginTransaction()
-                ?.replace(R.id.container, TvShowDetailsFragment.newInstance(tvShow))
-                ?.commit()
-    }
-
-    override fun onFavoriteClick(tvShow: TvShow) {
-
-    }
-
-    override fun onWebsiteClick(url: String) {
+    override fun onItemClick(crew: Crew) {
+        val url = crew.person.url
         if (!TextUtils.isEmpty(url)) {
             var updateUrl = ""
             if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -93,30 +88,22 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
     }
 
     private fun setAdapterWithRecyclerView() {
-        mAdapter = TvShowAdapter(this)
+        mAdapter = TvShowCrewAdapter(this)
         val rv = mBinding.recyclerView
         rv.layoutManager = LinearLayoutManager(activity)
         rv.setHasFixedSize(true)
         rv.adapter = mAdapter
     }
 
-    private fun doLoadTvShowList(scope: CoroutineScope) {
-        mViewModel.loadTvShowList(scope)?.observe(this@TvShowListFragment, Observer { result ->
+    private fun doLoadTvShowCrewList(scope: CoroutineScope, id: Long?) {
+        mViewModel.loadTvShowCrewList(scope, id)?.observe(this@TvShowCrewFragment, Observer { result ->
             result?.let {
                 handleResult(result)
             }
         })
     }
 
-    private fun doRefreshTvShowList(scope: CoroutineScope) {
-        mViewModel.refreshTvShowList(scope)?.observe(this@TvShowListFragment, Observer { result ->
-            result?.let {
-                handleResult(result)
-            }
-        })
-    }
-
-    private fun handleResult(result: ResultState<List<TvShow>>) {
+    private fun handleResult(result: ResultState<List<Crew>>) {
         when (result) {
             is ResultState.Loading -> updateViewState(true)
             is ResultState.Failure -> updateViewState(false)
@@ -130,37 +117,37 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
 
     private fun updateViewState(showProgress: Boolean) {
         mBinding.showProgress = showProgress
-        mBinding.swipeRefresh.isRefreshing = false
-        mBinding.swipeRefresh.isEnabled = false
+//        mBinding.swipeRefresh.isRefreshing = false
+//        mBinding.swipeRefresh.isEnabled = false
         if (showProgress) mBinding.isEmpty = false
         if (!showProgress) {
             mBinding.isEmpty = mAdapter.getList().isEmpty()
-            mBinding.swipeRefresh.isEnabled = true
+//            mBinding.swipeRefresh.isEnabled = true
         }
     }
 
 
-    //------ TvShowAdapter:
-    private class TvShowAdapter(listener: TvShowClickListener) : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
+    //------ TvShowCrewAdapter:
+    private class TvShowCrewAdapter(listener: TvShowCrewListener) : RecyclerView.Adapter<TvShowCrewAdapter.ViewHolder>() {
 
-        private var mListener: TvShowClickListener = listener
-        private var mList: ArrayList<TvShow> = ArrayList()
+        private var mListener: TvShowCrewListener = listener
+        private var mList: ArrayList<Crew> = ArrayList()
 
-        fun setList(list: List<TvShow>) {
+        fun setList(list: List<Crew>) {
             mList.clear()
             mList.addAll(list)
             notifyDataSetChanged()
         }
 
-        fun getItem(position: Int): TvShow = mList[position]
+        fun getItem(position: Int): Crew = mList[position]
 
-        fun getList(): List<TvShow> = mList
+        fun getList(): List<Crew> = mList
 
         override fun getItemCount(): Int = mList.size
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val inflater = LayoutInflater.from(parent.context)
-            val holder: ViewDataBinding = DataBindingUtil.inflate(inflater, R.layout.item_tv_show, parent, false)
+            val holder: ViewDataBinding = DataBindingUtil.inflate(inflater, R.layout.item_crew, parent, false)
             return ViewHolder(holder)
         }
 
@@ -169,7 +156,7 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
         }
 
         class ViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
-            fun bind(data: Any, listener: TvShowClickListener) {
+            fun bind(data: Any, listener: TvShowCrewListener) {
                 binding.setVariable(BR.model, data)
                 binding.setVariable(BR.clickListener, listener)
             }

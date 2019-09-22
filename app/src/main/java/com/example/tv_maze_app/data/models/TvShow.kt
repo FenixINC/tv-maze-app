@@ -65,9 +65,13 @@ data class TvShow(
         @SerializedName("updated")
         var updated: String = "",
 
+        @Ignore
+        @SerializedName("_embedded")
+        var embedded: Embedded,
+
         @ColumnInfo(name = "is_favorite")
         var isFavorite: Boolean = false
 ) : Parcelable {
     constructor() : this(0L, "", "", "", "", "", "",
-            Rate(), Network(), Image(), "", "", false)
+            Rate(), Network(), Image(), "", "", Embedded(), false)
 }
