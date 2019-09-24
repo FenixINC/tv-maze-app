@@ -11,11 +11,16 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Rate(
 
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        val id: Long = 0L,
+        var id: Long? = 0L,
 
         @ColumnInfo(name = "average")
         @SerializedName("average")
-        val average: Double = 0.0
-) : Parcelable
+        var average: Double? = 0.0,
+
+        @ColumnInfo(name = "tv_show_id")
+        var tvShowId: Long? = 0L
+) : Parcelable {
+    constructor() : this(null, 0.0, 0L)
+}

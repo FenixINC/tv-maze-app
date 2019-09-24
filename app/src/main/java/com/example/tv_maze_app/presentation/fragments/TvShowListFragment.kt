@@ -80,10 +80,8 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
 
     override fun onWebsiteClick(url: String) {
         if (!TextUtils.isEmpty(url)) {
-            var updateUrl = ""
             if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                updateUrl = "http://$url"
-                CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse(updateUrl))
+                CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse("http://$url"))
             } else {
                 CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse(url))
             }

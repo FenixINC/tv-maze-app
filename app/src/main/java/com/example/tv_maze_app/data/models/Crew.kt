@@ -23,4 +23,6 @@ data class Crew(
         @Ignore
         @SerializedName("person")
         var person: Person
-) : Parcelable
+) : Parcelable {
+    constructor() : this(0L, "", Person())
+}

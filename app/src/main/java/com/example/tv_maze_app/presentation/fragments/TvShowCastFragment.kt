@@ -73,17 +73,16 @@ class TvShowCastFragment : Fragment(), TvShowCastListener {
     }
 
     override fun onItemClick(cast: Cast) {
-        val url = cast.person.url
-        if (!TextUtils.isEmpty(url)) {
-            var updateUrl = ""
-            if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                updateUrl = "http://$url"
-                CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse(updateUrl))
+        cast.person.url?.let { url ->
+            if (!TextUtils.isEmpty(url)) {
+                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                    CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse("http://$url"))
+                } else {
+                    CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse(url))
+                }
             } else {
-                CustomTabsIntent.Builder().build().launchUrl(activity, Uri.parse(url))
+                Timber.d("Empty url")
             }
-        } else {
-            Timber.d("Empty url")
         }
     }
 

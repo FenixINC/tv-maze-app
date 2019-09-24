@@ -15,29 +15,31 @@ data class Person(
         @PrimaryKey
         @ColumnInfo(name = "id")
         @SerializedName("id")
-        var id: Long = 0L,
+        var id: Long? = 0L,
 
         @ColumnInfo(name = "url")
         @SerializedName("url")
-        var url: String = "",
+        var url: String? = "",
 
         @ColumnInfo(name = "name")
         @SerializedName("name")
-        var name: String = "",
+        var name: String? = "",
 
         @ColumnInfo(name = "birthday")
         @SerializedName("birthday")
-        var birthday: String = "",
+        var birthday: String? = "",
 
         @ColumnInfo(name = "deathday")
         @SerializedName("deathday")
-        var deathday: String = "",
+        var deathday: String? = "",
 
         @ColumnInfo(name = "gender")
         @SerializedName("gender")
-        var gender: String = "",
+        var gender: String? = "",
 
         @Ignore
         @SerializedName("image")
         var image: Image
-) : Parcelable
+) : Parcelable {
+    constructor() : this(0L, "", "", "", "", "", Image())
+}

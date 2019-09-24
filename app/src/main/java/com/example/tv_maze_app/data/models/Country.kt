@@ -11,15 +11,20 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Country(
 
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        val id: Long = 0L,
+        val id: Long? = 0L,
 
         @ColumnInfo(name = "name")
         @SerializedName("name")
-        val name: String = "",
+        val name: String? = "",
 
         @ColumnInfo(name = "timezone")
         @SerializedName("timezone")
-        val timezone: String = ""
-) : Parcelable
+        val timezone: String? = "",
+
+        @ColumnInfo(name = "tv_show_id")
+        var tvShowId: Long? = 0L
+) : Parcelable {
+    constructor() : this(null, "", "", 0L)
+}

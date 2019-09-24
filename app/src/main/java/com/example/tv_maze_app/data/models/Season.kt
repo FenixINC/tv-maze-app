@@ -12,8 +12,8 @@ data class Season(
 
         @PrimaryKey
         @ColumnInfo(name = "id")
-        var id: Long = 0L,
+        var id: Long? = 0L,
 
         @ColumnInfo(name = "season")
-        var season: Int = 0
+        var season: Int? = 0
 ) : Parcelable

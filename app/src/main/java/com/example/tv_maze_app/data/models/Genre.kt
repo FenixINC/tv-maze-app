@@ -13,17 +13,17 @@ data class Genre(
 
         @PrimaryKey
         @ColumnInfo(name = "id")
-        val id: Long = 0L,
+        val id: Long? = 0L,
 
         @ColumnInfo(name = "genre_1")
         @SerializedName("0")
-        val genre1: String = "",
+        val genre1: String? = "",
 
         @ColumnInfo(name = "genre_2")
         @SerializedName("1")
-        val genre2: String = "",
+        val genre2: String? = "",
 
         @ColumnInfo(name = "genre_3")
         @SerializedName("2")
-        val genre3: String = ""
+        val genre3: String? = ""
 ) : Parcelable

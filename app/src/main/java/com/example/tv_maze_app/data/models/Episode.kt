@@ -15,31 +15,31 @@ data class Episode(
         @PrimaryKey
         @ColumnInfo(name = "id")
         @SerializedName("id")
-        var id: Long = 0L,
+        var id: Long? = 0L,
 
         @ColumnInfo(name = "url")
         @SerializedName("url")
-        var url: String = "",
+        var url: String? = "",
 
         @ColumnInfo(name = "name")
         @SerializedName("name")
-        var name: String = "",
+        var name: String? = "",
 
         @ColumnInfo(name = "season")
         @SerializedName("season")
-        var season: Int = 0,
+        var season: Int? = 0,
 
         @ColumnInfo(name = "number")
         @SerializedName("number")
-        var number: Int = 0,
+        var number: Int? = 0,
 
         @ColumnInfo(name = "airdate")
         @SerializedName("airdate")
-        var airdate: String = "",
+        var airdate: String? = "",
 
         @ColumnInfo(name = "airstamp")
         @SerializedName("airstamp")
-        var airstamp: String = "",
+        var airstamp: String? = "",
 
         @Ignore
         @SerializedName("image")
@@ -47,5 +47,7 @@ data class Episode(
 
         @ColumnInfo(name = "summary")
         @SerializedName("summary")
-        var summary: String = ""
-) : Parcelable
+        var summary: String? = ""
+) : Parcelable {
+    constructor() : this(0L, "", "", 0, 0, "", "", Image(), "")
+}

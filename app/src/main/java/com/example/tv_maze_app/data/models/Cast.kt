@@ -8,13 +8,13 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "tvlCast")
+@Entity(tableName = "tblCast")
 @Parcelize
 data class Cast(
 
         @PrimaryKey
         @ColumnInfo(name = "id")
-        var id: Long = 0L,
+        var id: Long? = 0L,
 
         @Ignore
         @SerializedName("person")
@@ -23,4 +23,6 @@ data class Cast(
         @Ignore
         @SerializedName("character")
         var character: Character
-) : Parcelable
+) : Parcelable {
+        constructor(): this(0L, Person(), Character())
+}

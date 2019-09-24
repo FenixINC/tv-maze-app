@@ -15,19 +15,19 @@ data class TvShow(
         @PrimaryKey
         @ColumnInfo(name = "id")
         @SerializedName("id")
-        var id: Long = 0L,
+        var id: Long? = 0L,
 
         @ColumnInfo(name = "url")
         @SerializedName("url")
-        var url: String = "",
+        var url: String? = "",
 
         @ColumnInfo(name = "name")
         @SerializedName("name")
-        var name: String = "",
+        var name: String? = "",
 
         @ColumnInfo(name = "language")
         @SerializedName("language")
-        var language: String = "",
+        var language: String? = "",
 
 //        @Ignore
 //        @SerializedName("genres")
@@ -35,15 +35,15 @@ data class TvShow(
 
         @ColumnInfo(name = "status")
         @SerializedName("status")
-        var status: String = "",
+        var status: String? = "",
 
         @ColumnInfo(name = "premiered")
         @SerializedName("premiered")
-        var premiered: String = "",
+        var premiered: String? = "",
 
         @ColumnInfo(name = "official_site")
         @SerializedName("officialSite")
-        var officialSite: String? = null,
+        var officialSite: String? = "",
 
         @Ignore
         @SerializedName("rating")
@@ -59,11 +59,11 @@ data class TvShow(
 
         @ColumnInfo(name = "summary")
         @SerializedName("summary")
-        var summary: String = "",
+        var summary: String? = "",
 
         @ColumnInfo(name = "updated")
         @SerializedName("updated")
-        var updated: String = "",
+        var updated: String? = "",
 
         @Ignore
         @SerializedName("_embedded")

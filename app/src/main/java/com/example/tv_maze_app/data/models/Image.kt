@@ -11,15 +11,20 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Image(
 
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        val id: Long = 0L,
+        var id: Long? = 0L,
 
         @ColumnInfo(name = "url_medium")
         @SerializedName("medium")
-        val medium: String = "",
+        var medium: String? = "",
 
         @ColumnInfo(name = "url_original")
         @SerializedName("original")
-        val original: String = ""
-) : Parcelable
+        var original: String? = "",
+
+        @ColumnInfo(name = "tv_show_id")
+        var tvShowId: Long? = 0L
+) : Parcelable {
+    constructor() : this(null, "", "", 0L)
+}

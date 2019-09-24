@@ -15,17 +15,19 @@ data class Character(
         @PrimaryKey
         @ColumnInfo(name = "id")
         @SerializedName("id")
-        var id: Long = 0L,
+        var id: Long? = 0L,
 
         @ColumnInfo(name = "url")
         @SerializedName("url")
-        var url: String = "",
+        var url: String? = "",
 
         @ColumnInfo(name = "name")
         @SerializedName("name")
-        var name: String = "",
+        var name: String? = "",
 
         @Ignore
         @SerializedName("image")
         var image: Image
-) : Parcelable
+) : Parcelable {
+    constructor() : this(0L, "", "", Image())
+}

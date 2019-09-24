@@ -5,6 +5,10 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
         <variable
             name="model"
             type="com.example.tv_maze_app.data.models.TvShow" />
@@ -152,6 +156,7 @@
                             android:gravity="start|center_vertical"
                             android:textColor="@color/blue"
                             android:textSize="@dimen/text_size_default"
+                            android:visibility="@{TextUtils.isEmpty(model.officialSite) ? View.GONE : View.VISIBLE}"
                             app:bindText="@{model.officialSite}"
                             tools:text="https://google.com" />
                     </LinearLayout>

@@ -102,7 +102,7 @@ class TvShowEpisodesFragment : Fragment() {
                 for (key in mapSeasonEpisode.keys) {
                     if (mapSeasonEpisode.containsKey(key)) {
                         mapSeasonEpisode[key]?.let { list ->
-                            val season = Season(key.toLong(), key)
+                            val season = Season(key?.toLong(), key)
                             mAdapter.addItem(season)
                             mAdapter.setList(list, false)
                         }

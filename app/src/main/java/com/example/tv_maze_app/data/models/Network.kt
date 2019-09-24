@@ -12,21 +12,24 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Network(
 
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "local_id")
-        val localId: Long = 0L,
+        var localId: Long? = 0L,
 
         @ColumnInfo(name = "id")
         @SerializedName("id")
-        val id: Long = 0,
+        var id: Long? = 0,
 
         @ColumnInfo(name = "name")
         @SerializedName("name")
-        val name: String = "",
+        var name: String? = "",
 
         @Ignore
         @SerializedName("country")
-        val country: Country
+        var country: Country,
+
+        @ColumnInfo(name = "tv_show_id")
+        var tvShowId: Long? = 0L
 ) : Parcelable {
-        constructor() : this (0L, 0L, "", Country())
+    constructor() : this(null, 0L, "", Country(), 0L)
 }
