@@ -18,8 +18,6 @@ class TvMazeApplication : Application() {
         super.onCreate()
         sInstance = this
         Stetho.initializeWithDefaults(this@TvMazeApplication)
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
+        Timber.plant(Timber.DebugTree())
     }
 }

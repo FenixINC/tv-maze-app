@@ -4,6 +4,11 @@
     <!--  TITLES:  -->
     <string name="header_title_tv_show">TV Shows</string>
 
+    <!--  Bottom navigation:  -->
+    <string name="bottom_nav_tv_show">TvShow</string>
+    <string name="bottom_nav_search">Search</string>
+    <string name="bottom_nav_favorites">Favorites</string>
+
     <!--  Tv Show Info:  -->
     <string name="label_show_info">Show Info</string>
     <string name="label_status">Status:</string>

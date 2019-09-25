@@ -16,4 +16,10 @@
 
     <color name="color_tv_show_background">#009688</color>
     <color name="text">#039E90</color>
+
+    <!--  Bottom navigation:  -->
+    <color name="color_bottom_nav_icon_active">#089485</color>
+    <color name="color_bottom_nav_icon_inactive">#CFCFCF</color>
+    <color name="color_bottom_nav_text_active">#089485</color>
+    <color name="color_bottom_nav_text_inactive">#CFCFCF</color>
 </resources>

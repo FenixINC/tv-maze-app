@@ -68,10 +68,11 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
     }
 
     override fun onItemClick(tvShow: TvShow) {
-        fragmentManager
-                ?.beginTransaction()
-                ?.replace(R.id.container, TvShowDetailsFragment.newInstance(tvShow))
-                ?.commit()
+        parentFragmentManager
+                .beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.container, TvShowDetailsFragment.newInstance(tvShow))
+                .commit()
     }
 
     override fun onFavoriteClick(tvShow: TvShow) {

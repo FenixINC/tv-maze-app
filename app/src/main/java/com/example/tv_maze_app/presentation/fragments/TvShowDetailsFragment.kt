@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.tv_maze_app.data.models.TvShow
@@ -12,6 +11,8 @@ import com.example.tv_maze_app.databinding.FragmentTvShowDetailsBinding
 import com.example.tv_maze_app.presentation.adapters.PageAdapter
 import com.example.tv_maze_app.utils.Constants
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class TvShowDetailsFragment : Fragment() {
 
@@ -28,9 +29,11 @@ class TvShowDetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val actionBar = (activity as AppCompatActivity).supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        setHasOptionsMenu(true)
+        val toolbar = activity?.toolbar
+        if (toolbar != null) run {
+            toolbar.setNavigationIcon(com.example.tv_maze_app.R.drawable.ic_arrow_white)
+            toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
+        }
 
         arguments?.run {
             mModel = getParcelable(Constants.KEY_MODEL)
