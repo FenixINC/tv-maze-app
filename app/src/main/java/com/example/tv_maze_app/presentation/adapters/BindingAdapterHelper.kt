@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.tv_maze_app.R
 import com.example.tv_maze_app.data.models.Cast
 import com.example.tv_maze_app.data.models.Crew
+import com.example.tv_maze_app.data.models.Rate
 import com.example.tv_maze_app.data.models.TvShow
 import com.example.tv_maze_app.utils.HtmlCompat
 import timber.log.Timber
@@ -108,5 +109,11 @@ object BindingAdapterHelper {
             textView.text = model.officialSite
         else
             textView.visibility = View.GONE
+    }
+
+    @JvmStatic
+    @BindingAdapter("bindRate")
+    fun setRateText(@NonNull textView: TextView, rate: Rate) {
+        textView.text = rate?.average?.toString() ?: "-"
     }
 }
