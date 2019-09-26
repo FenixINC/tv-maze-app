@@ -1,6 +1,7 @@
 package com.example.tv_maze_app.presentation.adapters
 
 import android.text.TextUtils
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
@@ -94,6 +95,18 @@ object BindingAdapterHelper {
     @JvmStatic
     @BindingAdapter("bindText")
     fun setText(@NonNull textView: TextView, text: String) {
-        textView.text = HtmlCompat.fromHtml(text)
+        if (!TextUtils.isEmpty(text))
+            textView.text = HtmlCompat.fromHtml(text)
+        else
+            textView.visibility = View.GONE
+    }
+
+    @JvmStatic
+    @BindingAdapter("bindOffWebsite")
+    fun setOffWebsiteText(@NonNull textView: TextView, model: TvShow) {
+        if (!TextUtils.isEmpty(model.officialSite))
+            textView.text = model.officialSite
+        else
+            textView.visibility = View.GONE
     }
 }
