@@ -80,7 +80,7 @@
                     android:gravity="start|center_vertical"
                     android:onClick="@{()-> clickListener.onWebsiteClick(model.url)}"
                     android:text="@string/visit_website"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/text"
                     android:textSize="@dimen/text_size_default" />
 
                 <View
