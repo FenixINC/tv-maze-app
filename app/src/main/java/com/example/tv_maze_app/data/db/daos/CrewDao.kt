@@ -1,7 +1,7 @@
 package com.example.tv_maze_app.data.db.daos
 
 import androidx.room.*
-import com.example.tv_maze_app.data.models.Crew
+import com.example.tv_maze_app.data.entities.Crew
 
 @Dao
 interface CrewDao {

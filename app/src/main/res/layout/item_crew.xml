@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.example.tv_maze_app.data.models.Crew" />
+            type="com.example.tv_maze_app.data.entities.Crew" />
 
         <variable
             name="clickListener"

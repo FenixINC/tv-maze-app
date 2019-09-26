@@ -1,4 +1,4 @@
-package com.example.tv_maze_app.data.models
+package com.example.tv_maze_app.data.entities
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -8,21 +8,17 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "tblCast")
+@Entity(tableName = "tblEmbedded")
 @Parcelize
-data class Cast(
+data class Embedded(
 
         @PrimaryKey
         @ColumnInfo(name = "id")
         var id: Long? = 0L,
 
         @Ignore
-        @SerializedName("person")
-        var person: Person,
-
-        @Ignore
-        @SerializedName("character")
-        var character: Character
+        @SerializedName("cast")
+        var castList: List<Cast>
 ) : Parcelable {
-        constructor(): this(0L, Person(), Character())
+    constructor() : this(0L, listOf())
 }

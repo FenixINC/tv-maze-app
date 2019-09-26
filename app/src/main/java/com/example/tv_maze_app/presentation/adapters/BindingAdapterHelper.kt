@@ -8,10 +8,10 @@ import androidx.annotation.NonNull
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.tv_maze_app.R
-import com.example.tv_maze_app.data.models.Cast
-import com.example.tv_maze_app.data.models.Crew
-import com.example.tv_maze_app.data.models.Rate
-import com.example.tv_maze_app.data.models.TvShow
+import com.example.tv_maze_app.data.entities.Cast
+import com.example.tv_maze_app.data.entities.Crew
+import com.example.tv_maze_app.data.entities.Rate
+import com.example.tv_maze_app.data.entities.TvShow
 import com.example.tv_maze_app.utils.HtmlCompat
 import timber.log.Timber
 

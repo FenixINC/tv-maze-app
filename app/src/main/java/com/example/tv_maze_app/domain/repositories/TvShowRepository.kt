@@ -1,8 +1,8 @@
 package com.example.tv_maze_app.domain.repositories
 
 import androidx.lifecycle.MutableLiveData
-import com.example.tv_maze_app.data.models.ResultState
-import com.example.tv_maze_app.data.models.TvShow
+import com.example.tv_maze_app.data.entities.ResultState
+import com.example.tv_maze_app.data.entities.TvShow
 import kotlinx.coroutines.CoroutineScope
 
 interface TvShowRepository {

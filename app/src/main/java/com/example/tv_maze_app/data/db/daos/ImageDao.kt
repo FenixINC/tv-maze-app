@@ -1,7 +1,7 @@
 package com.example.tv_maze_app.data.db.daos
 
 import androidx.room.*
-import com.example.tv_maze_app.data.models.Image
+import com.example.tv_maze_app.data.entities.Image
 
 @Dao
 interface ImageDao {

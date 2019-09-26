@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.tv_maze_app.BR
 import com.example.tv_maze_app.R
 import com.example.tv_maze_app.data.implementations.TvShowDetailsRepositoryImpl
-import com.example.tv_maze_app.data.models.Episode
-import com.example.tv_maze_app.data.models.ResultState
-import com.example.tv_maze_app.data.models.Season
-import com.example.tv_maze_app.data.models.TvShow
+import com.example.tv_maze_app.data.entities.Episode
+import com.example.tv_maze_app.data.entities.ResultState
+import com.example.tv_maze_app.data.entities.Season
+import com.example.tv_maze_app.data.entities.TvShow
 import com.example.tv_maze_app.databinding.FragmentTvShowEpisodeBinding
 import com.example.tv_maze_app.databinding.ItemEpisodeBinding
 import com.example.tv_maze_app.databinding.ItemSeasonBinding

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.example.tv_maze_app.data.models.TvShow
+import com.example.tv_maze_app.data.entities.TvShow
 import com.example.tv_maze_app.databinding.FragmentTvShowDetailsBinding
 import com.example.tv_maze_app.presentation.adapters.PageAdapter
 import com.example.tv_maze_app.utils.Constants

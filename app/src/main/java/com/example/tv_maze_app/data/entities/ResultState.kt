@@ -1,4 +1,4 @@
-package com.example.tv_maze_app.data.models
+package com.example.tv_maze_app.data.entities
 
 sealed class ResultState<out T> {
     class Loading<out T> : ResultState<T>() //--- showing progress

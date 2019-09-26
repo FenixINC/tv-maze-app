@@ -1,10 +1,10 @@
 package com.example.tv_maze_app.data.implementations
 
 import androidx.lifecycle.MutableLiveData
-import com.example.tv_maze_app.data.models.Cast
-import com.example.tv_maze_app.data.models.Crew
-import com.example.tv_maze_app.data.models.Episode
-import com.example.tv_maze_app.data.models.ResultState
+import com.example.tv_maze_app.data.entities.Cast
+import com.example.tv_maze_app.data.entities.Crew
+import com.example.tv_maze_app.data.entities.Episode
+import com.example.tv_maze_app.data.entities.ResultState
 import com.example.tv_maze_app.data.network.ServiceGenerator
 import com.example.tv_maze_app.data.network.services.TvShowService
 import com.example.tv_maze_app.domain.repositories.TvShowDetailsRepository

@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.tv_maze_app.TvMazeApplication
 import com.example.tv_maze_app.data.db.daos.*
-import com.example.tv_maze_app.data.models.*
+import com.example.tv_maze_app.data.entities.*
 
 @Database(entities = [
     (Cast::class),

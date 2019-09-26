@@ -1,4 +1,4 @@
-package com.example.tv_maze_app.data.models
+package com.example.tv_maze_app.data.entities
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

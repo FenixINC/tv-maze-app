@@ -1,4 +1,4 @@
-package com.example.tv_maze_app.data.models
+package com.example.tv_maze_app.data.entities
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -7,20 +7,24 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "tblRate")
+@Entity(tableName = "tblCountry")
 @Parcelize
-data class Rate(
+data class Country(
 
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        var id: Long? = 0L,
+        val id: Long? = 0L,
 
-        @ColumnInfo(name = "average")
-        @SerializedName("average")
-        var average: Double? = 0.0,
+        @ColumnInfo(name = "name")
+        @SerializedName("name")
+        val name: String? = "",
+
+        @ColumnInfo(name = "timezone")
+        @SerializedName("timezone")
+        val timezone: String? = "",
 
         @ColumnInfo(name = "tv_show_id")
         var tvShowId: Long? = 0L
 ) : Parcelable {
-    constructor() : this(null, 0.0, 0L)
+    constructor() : this(null, "", "", 0L)
 }

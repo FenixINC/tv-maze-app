@@ -1,6 +1,6 @@
 package com.example.tv_maze_app.presentation.listeners
 
-import com.example.tv_maze_app.data.models.TvShow
+import com.example.tv_maze_app.data.entities.TvShow
 
 interface TvShowClickListener {
     fun onItemClick(tvShow: TvShow)

@@ -1,7 +1,7 @@
 package com.example.tv_maze_app.data.db.daos
 
 import androidx.room.*
-import com.example.tv_maze_app.data.models.TvShow
+import com.example.tv_maze_app.data.entities.TvShow
 
 @Dao
 interface TvShowDao {

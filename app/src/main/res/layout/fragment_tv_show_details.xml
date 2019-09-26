@@ -10,7 +10,7 @@
 
         <variable
             name="model"
-            type="com.example.tv_maze_app.data.models.TvShow" />
+            type="com.example.tv_maze_app.data.entities.TvShow" />
 
         <variable
             name="clickListener"

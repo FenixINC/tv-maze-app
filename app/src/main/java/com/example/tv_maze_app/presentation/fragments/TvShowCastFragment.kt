@@ -19,9 +19,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tv_maze_app.BR
 import com.example.tv_maze_app.R
 import com.example.tv_maze_app.data.implementations.TvShowDetailsRepositoryImpl
-import com.example.tv_maze_app.data.models.Cast
-import com.example.tv_maze_app.data.models.ResultState
-import com.example.tv_maze_app.data.models.TvShow
+import com.example.tv_maze_app.data.entities.Cast
+import com.example.tv_maze_app.data.entities.ResultState
+import com.example.tv_maze_app.data.entities.TvShow
 import com.example.tv_maze_app.databinding.FragmentListBinding
 import com.example.tv_maze_app.presentation.listeners.TvShowCastListener
 import com.example.tv_maze_app.presentation.viewmodels.TvShowDetailsViewModel

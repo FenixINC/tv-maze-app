@@ -2,7 +2,7 @@ package com.example.tv_maze_app.data.implementations
 
 import androidx.lifecycle.MutableLiveData
 import com.example.tv_maze_app.data.db.AppDatabase
-import com.example.tv_maze_app.data.models.*
+import com.example.tv_maze_app.data.entities.*
 import com.example.tv_maze_app.data.network.ServiceGenerator
 import com.example.tv_maze_app.data.network.services.TvShowService
 import com.example.tv_maze_app.domain.repositories.TvShowRepository
