@@ -66,6 +66,11 @@ class TvShowRepositoryImpl : TvShowRepository {
         return mMutableLiveData
     }
 
+    override fun doFavorite(scope: CoroutineScope, id: Long?): MutableLiveData<ResultState<List<TvShow>>> {
+
+        return mMutableLiveData
+    }
+
     private suspend fun parseTvShow(list: List<TvShow>) {
         AppDatabase.getInstance().tvShowDao().deleteAll()
 

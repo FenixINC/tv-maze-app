@@ -8,4 +8,5 @@ import kotlinx.coroutines.CoroutineScope
 interface TvShowRepository {
     fun doLoadTvShowList(scope: CoroutineScope): MutableLiveData<ResultState<List<TvShow>>>
     fun doRefreshTvShowList(scope: CoroutineScope): MutableLiveData<ResultState<List<TvShow>>>
+    fun doFavorite(scope: CoroutineScope, id: Long?): MutableLiveData<ResultState<List<TvShow>>>
 }

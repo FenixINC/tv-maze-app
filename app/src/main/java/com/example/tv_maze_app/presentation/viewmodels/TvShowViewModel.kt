@@ -15,6 +15,7 @@ class TvShowViewModel() : ViewModel() {
 
     fun loadTvShowList(scope: CoroutineScope) = mRepository?.doLoadTvShowList(scope)
     fun refreshTvShowList(scope: CoroutineScope) = mRepository?.doRefreshTvShowList(scope)
+    fun makeFavorite(scope: CoroutineScope, id: Long?) = mRepository?.doFavorite(scope, id)
 
     @Suppress("UNCHECKED_CAST")
     class Factory(private val repository: TvShowRepository) : ViewModelProvider.NewInstanceFactory() {

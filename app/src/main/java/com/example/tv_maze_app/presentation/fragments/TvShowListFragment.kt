@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tv_maze_app.BR
 import com.example.tv_maze_app.R
-import com.example.tv_maze_app.data.implementations.TvShowRepositoryImpl
 import com.example.tv_maze_app.data.entities.ResultState
 import com.example.tv_maze_app.data.entities.TvShow
+import com.example.tv_maze_app.data.implementations.TvShowRepositoryImpl
 import com.example.tv_maze_app.databinding.FragmentTvShowListBinding
 import com.example.tv_maze_app.presentation.listeners.TvShowClickListener
 import com.example.tv_maze_app.presentation.viewmodels.TvShowViewModel
@@ -58,11 +58,11 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
         setAdapterWithRecyclerView()
 
         lifecycleScope.launchWhenStarted {
-            doLoadTvShowList(this)
+            doLoadTvShowList(scope = this)
         }
         mBinding.swipeRefresh.setOnRefreshListener {
             lifecycleScope.launchWhenStarted {
-                doRefreshTvShowList(this)
+                doRefreshTvShowList(scope = this)
             }
         }
     }
@@ -75,8 +75,10 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
                 .commit()
     }
 
-    override fun onFavoriteClick(tvShow: TvShow) {
-
+    override fun onFavoriteClick(tvShow: TvShow, position: Int) {
+        lifecycleScope.launchWhenStarted {
+            doFavorite(this, tvShow.id, position)
+        }
     }
 
     override fun onWebsiteClick(url: String) {
@@ -115,6 +117,16 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
         })
     }
 
+    private fun doFavorite(scope: CoroutineScope, id: Long?, position: Int) {
+//        mViewModel.makeFavorite(scope, id)?.observe(this@TvShowListFragment, Observer { result ->
+//            result?.let {
+//                handleResult(result)
+//            }
+//        })
+
+        mAdapter.setItemFavorite(id, position, true)
+    }
+
     private fun handleResult(result: ResultState<List<TvShow>>) {
         when (result) {
             is ResultState.Loading -> updateViewState(true)
@@ -144,11 +156,19 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
 
         private var mListener: TvShowClickListener = listener
         private var mList: ArrayList<TvShow> = ArrayList()
+        private var mPosition: Int = 0
+        private var mIsFavorite: Boolean = false
 
         fun setList(list: List<TvShow>) {
             mList.clear()
             mList.addAll(list)
             notifyDataSetChanged()
+        }
+
+        fun setItemFavorite(id: Long?, position: Int, isFavorite: Boolean) {
+            mPosition = position
+            mIsFavorite = isFavorite
+            notifyItemChanged(mPosition)
         }
 
         fun getItem(position: Int): TvShow = mList[position]
@@ -164,13 +184,15 @@ class TvShowListFragment : Fragment(), TvShowClickListener {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.bind(getItem(position), mListener)
+            holder.bind(getItem(position), mListener, position, mIsFavorite)
         }
 
         class ViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
-            fun bind(data: Any, listener: TvShowClickListener) {
+            fun bind(data: Any, listener: TvShowClickListener, position: Int, isFavorite: Boolean) {
                 binding.setVariable(BR.model, data)
                 binding.setVariable(BR.clickListener, listener)
+                binding.setVariable(BR.position, position)
+                binding.setVariable(BR.isFavorite, isFavorite)
             }
         }
     }
